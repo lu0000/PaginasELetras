@@ -1,16 +1,9 @@
 package com.example.paginas_e_letras.model;
 
-public class Financeiro {
-    private Long id;
+public class Financeiro extends AbstractEntity<Long>{
     private double receita;
     private double despesas;
     
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
     public double getReceita() {
         return receita;
     }
@@ -28,7 +21,6 @@ public class Financeiro {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         long temp;
         temp = Double.doubleToLongBits(receita);
         result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -46,16 +38,15 @@ public class Financeiro {
         if (getClass() != obj.getClass())
             return false;
         Financeiro other = (Financeiro) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
         if (Double.doubleToLongBits(receita) != Double.doubleToLongBits(other.receita))
             return false;
         if (Double.doubleToLongBits(despesas) != Double.doubleToLongBits(other.despesas))
             return false;
         return true;
+    }
+    @Override
+    public String toString() {
+        return "Financeiro [receita=" + receita + ", despesas=" + despesas + "]";
     }
     
     

@@ -1,19 +1,12 @@
 package com.example.paginas_e_letras.model;
 
-public class Cliente {
-    private Long id;
+public class Cliente extends AbstractEntity<Long>{
     private String nome;
     private String cpf;
     //private String endereco; criar uma classe
     private String celular;
     private String email;
     
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
     public String getNome() {
         return nome;
     }
@@ -43,7 +36,6 @@ public class Cliente {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
         result = prime * result + ((celular == null) ? 0 : celular.hashCode());
@@ -60,11 +52,6 @@ public class Cliente {
         if (getClass() != obj.getClass())
             return false;
         Cliente other = (Cliente) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
         if (nome == null) {
             if (other.nome != null)
                 return false;
@@ -86,6 +73,10 @@ public class Cliente {
         } else if (!email.equals(other.email))
             return false;
         return true;
+    }
+    @Override
+    public String toString() {
+        return "Cliente [nome=" + nome + ", cpf=" + cpf + ", celular=" + celular + ", email=" + email + "]";
     }
 
     

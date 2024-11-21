@@ -1,19 +1,12 @@
 package com.example.paginas_e_letras.model;
 
-public class Livro {
-    private Long id;
+public class Livro extends AbstractEntity<Long>{
     private String titulo;
     private String isbn;
     private String genero;
     private double valor;
 
     
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
     public String getTitulo() {
         return titulo;
     }
@@ -43,7 +36,6 @@ public class Livro {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
         result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
         result = prime * result + ((genero == null) ? 0 : genero.hashCode());
@@ -62,11 +54,6 @@ public class Livro {
         if (getClass() != obj.getClass())
             return false;
         Livro other = (Livro) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
         if (titulo == null) {
             if (other.titulo != null)
                 return false;
@@ -89,7 +76,7 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "Livro [id=" + id + ", titulo=" + titulo + ", isbn=" + isbn + ", genero=" + genero + ", valor=" + valor
+        return "Livro [titulo=" + titulo + ", isbn=" + isbn + ", genero=" + genero + ", valor=" + valor
                 + "]";
     }
 
