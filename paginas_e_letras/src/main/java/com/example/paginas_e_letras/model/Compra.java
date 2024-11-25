@@ -7,21 +7,23 @@ import jakarta.persistence.*;
 public class Compra extends AbstractEntity<Long>{
     
     @Column(nullable = false)
-    private String forma_de_pagamento;
+    private String descrição_compra;
 
     @Column(nullable = false)
     private double valor_total;
-    //desconto????
-    
-    public String getForma_de_pagamento() {
-        return forma_de_pagamento;
+
+    public String getDescrição_compra() {
+        return descrição_compra;
     }
-    public void setForma_de_pagamento(String forma_de_pagamento) {
-        this.forma_de_pagamento = forma_de_pagamento;
+
+    public void setDescrição_compra(String descrição_compra) {
+        this.descrição_compra = descrição_compra;
     }
+
     public double getValor_total() {
         return valor_total;
     }
+
     public void setValor_total(double valor_total) {
         this.valor_total = valor_total;
     }
@@ -29,8 +31,8 @@ public class Compra extends AbstractEntity<Long>{
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + ((forma_de_pagamento == null) ? 0 : forma_de_pagamento.hashCode());
+        int result = super.hashCode();
+        result = prime * result + ((descrição_compra == null) ? 0 : descrição_compra.hashCode());
         long temp;
         temp = Double.doubleToLongBits(valor_total);
         result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -41,26 +43,20 @@ public class Compra extends AbstractEntity<Long>{
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
         Compra other = (Compra) obj;
-        if (forma_de_pagamento == null) {
-            if (other.forma_de_pagamento != null)
+        if (descrição_compra == null) {
+            if (other.descrição_compra != null)
                 return false;
-        } else if (!forma_de_pagamento.equals(other.forma_de_pagamento))
+        } else if (!descrição_compra.equals(other.descrição_compra))
             return false;
         if (Double.doubleToLongBits(valor_total) != Double.doubleToLongBits(other.valor_total))
             return false;
         return true;
     }
-    @Override
-    public String toString() {
-        return "Compra [forma_de_pagamento=" + forma_de_pagamento + ", valor_total=" + valor_total + "]";
-    }
-
-    
 
     
 }
