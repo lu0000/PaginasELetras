@@ -6,33 +6,59 @@ import jakarta.persistence.*;
 @Table(name = "FINANCEIRO")
 public class Financeiro extends AbstractEntity<Long>{
     
-    @Column(nullable = false)
-    private double receita;
+    private double valor_caixa;
+
+    private double entrada;
+
+    private double saida;
 
     @Column(nullable = false)
-    private double despesas;
-    
-    public double getReceita() {
-        return receita;
+    private double descricao;
+
+    public double getValor_caixa() {
+        return valor_caixa;
     }
-    public void setReceita(double receita) {
-        this.receita = receita;
+
+    public void setValor_caixa(double valor_caixa) {
+        this.valor_caixa = valor_caixa;
     }
-    public double getDespesas() {
-        return despesas;
+
+    public double getEntrada() {
+        return entrada;
     }
-    public void setDespesas(double despesas) {
-        this.despesas = despesas;
+
+    public void setEntrada(double entrada) {
+        this.entrada = entrada;
+    }
+
+    public double getSaida() {
+        return saida;
+    }
+
+    public void setSaida(double saida) {
+        this.saida = saida;
+    }
+
+    public double getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(double descricao) {
+        this.descricao = descricao;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
+        int result = super.hashCode();
         long temp;
-        temp = Double.doubleToLongBits(receita);
+        temp = Double.doubleToLongBits(valor_caixa);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(despesas);
+        temp = Double.doubleToLongBits(entrada);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(saida);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(descricao);
         result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
@@ -41,21 +67,28 @@ public class Financeiro extends AbstractEntity<Long>{
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
         Financeiro other = (Financeiro) obj;
-        if (Double.doubleToLongBits(receita) != Double.doubleToLongBits(other.receita))
+        if (Double.doubleToLongBits(valor_caixa) != Double.doubleToLongBits(other.valor_caixa))
             return false;
-        if (Double.doubleToLongBits(despesas) != Double.doubleToLongBits(other.despesas))
+        if (Double.doubleToLongBits(entrada) != Double.doubleToLongBits(other.entrada))
+            return false;
+        if (Double.doubleToLongBits(saida) != Double.doubleToLongBits(other.saida))
+            return false;
+        if (Double.doubleToLongBits(descricao) != Double.doubleToLongBits(other.descricao))
             return false;
         return true;
     }
+
     @Override
     public String toString() {
-        return "Financeiro [receita=" + receita + ", despesas=" + despesas + "]";
+        return "Financeiro [valor_caixa=" + valor_caixa + ", entrada=" + entrada + ", saida=" + saida + ", descricao="
+                + descricao + "]";
     }
+    
     
     
 }
