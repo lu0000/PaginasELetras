@@ -1,7 +1,15 @@
 package com.example.paginas_e_letras.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "COMPRA")
 public class Compra extends AbstractEntity<Long>{
+    
+    @Column(nullable = false)
     private String forma_de_pagamento;
+
+    @Column(nullable = false)
     private double valor_total;
     //desconto????
     

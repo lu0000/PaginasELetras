@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "PaginasELetrasApplication",
+            "request": "launch",
+            "mainClass": "com.example.paginas_e_letras.PaginasELetrasApplication",
+            "projectName": "paginas_e_letras"
+        }
+    ]
+}

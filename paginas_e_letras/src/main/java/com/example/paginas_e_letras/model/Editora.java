@@ -1,8 +1,21 @@
 package com.example.paginas_e_letras.model;
-//https://cursos.alura.com.br/forum/topico-considere-os-requisitos-para-o-banco-de-dados-de-uma-livraria-164677
+
+import java.util.List;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "EDITORA")
 public class Editora extends AbstractEntity<Long>{
+    
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String telefone;
+
+    @OneToMany(mappedBy = "editora")
+    private List<Livro> livros;
     
     public String getNome() {
         return nome;

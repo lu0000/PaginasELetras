@@ -1,7 +1,15 @@
 package com.example.paginas_e_letras.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "FINANCEIRO")
 public class Financeiro extends AbstractEntity<Long>{
+    
+    @Column(nullable = false)
     private double receita;
+
+    @Column(nullable = false)
     private double despesas;
     
     public double getReceita() {

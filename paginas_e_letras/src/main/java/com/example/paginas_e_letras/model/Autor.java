@@ -1,7 +1,12 @@
 package com.example.paginas_e_letras.model;
 
+import jakarta.persistence.*;
 
+@Entity //a classe será mapeada para uma tabela no banco
+@Table(name = "AUTOR") //define o nome da tabela
 public class Autor extends AbstractEntity<Long>{
+    
+    @Column(nullable = false) //especificações da coluna (nullabel(é null ou não))
     private String nome_autor;
 
     public String getNome_autor() {

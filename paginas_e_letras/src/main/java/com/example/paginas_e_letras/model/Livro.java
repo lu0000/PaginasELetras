@@ -1,10 +1,26 @@
 package com.example.paginas_e_letras.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "LIVRO")
 public class Livro extends AbstractEntity<Long>{
+    
+    @Column(nullable = false)
     private String titulo;
+    
+    @Column(nullable = false, unique = true)
     private String isbn;
+    
+    @Column(nullable = false)
     private String genero;
+    
+    @Column(nullable = false)
     private double valor;
+
+    @ManyToOne
+    @JoinColumn(name = "editora_id_fk")
+    private Editora editora;
 
     
     public String getTitulo() {

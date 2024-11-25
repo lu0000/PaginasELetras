@@ -1,10 +1,22 @@
 package com.example.paginas_e_letras.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "CLIENTE")
 public class Cliente extends AbstractEntity<Long>{
+    
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String cpf;
     //private String endereco; criar uma classe
+    
+    @Column(nullable = false)
     private String celular;
+
+    @Column(nullable = true)
     private String email;
     
     public String getNome() {

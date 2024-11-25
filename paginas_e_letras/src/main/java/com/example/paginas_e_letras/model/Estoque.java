@@ -1,6 +1,12 @@
 package com.example.paginas_e_letras.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "ESTOQUE")
 public class Estoque extends AbstractEntity<Long>{
+    
+    @Column(nullable = false)
     private int quant_produto;
     
 
