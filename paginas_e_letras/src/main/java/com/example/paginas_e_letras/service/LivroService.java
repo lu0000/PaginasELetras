@@ -16,14 +16,14 @@ public class LivroService {
     @Autowired
     private ILivroRepository repository;
 
-    public void save(Livro livro){
+    public void salvar(Livro livro){
         System.out.println("Tentando salvar o livro: " + livro.getTitulo());
         repository.save(livro);
         System.out.println("Livro salvo com sucesso!");
     }
 
     public void editar(Livro livro){
-        
+        repository.save(livro);
     }
 
     public void excluir(Livro livro){

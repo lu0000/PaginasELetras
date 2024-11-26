@@ -1,15 +1,26 @@
 package com.example.paginas_e_letras.model;
 
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "VENDA")
 public class Venda extends AbstractEntity<Long> {
+    
     private String descrição_produto;
+    
     private String forma_de_pagamento;
+    
     private double desconto;
+    
     private double valor_bruto;
+    
+    @Column(nullable = false)
     private double valor_liquido;
+
+    @ManyToOne
+    @JoinColumn(name = "financeiro_id_fk")
+    private Financeiro financeiro;
     
     
     public String getDescrição_produto() {

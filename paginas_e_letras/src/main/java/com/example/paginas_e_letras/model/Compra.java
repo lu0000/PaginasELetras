@@ -12,6 +12,12 @@ public class Compra extends AbstractEntity<Long>{
     @Column(nullable = false)
     private double valor_total;
 
+    @ManyToOne
+    @JoinColumn(name = "financeiro_id_fk")
+    private Financeiro financeiro;
+
+
+
     public String getDescrição_compra() {
         return descrição_compra;
     }

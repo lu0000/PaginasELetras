@@ -36,4 +36,6 @@ public class EstoqueService {
     public Optional<Estoque> buscarPorId(Long id){
         return repository.findById(id);
     }
+
+    
 }

@@ -1,5 +1,7 @@
 package com.example.paginas_e_letras.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity //a classe será mapeada para uma tabela no banco
@@ -8,6 +10,9 @@ public class Autor extends AbstractEntity<Long>{
     
     @Column(nullable = false) //especificações da coluna (nullabel(é null ou não))
     private String nome_autor;
+
+    @OneToMany(mappedBy = "autor")
+    private List<Livro> livros;
 
     public String getNome_autor() {
         return nome_autor;

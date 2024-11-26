@@ -1,5 +1,7 @@
 package com.example.paginas_e_letras.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +11,8 @@ public class Estoque extends AbstractEntity<Long>{
     @Column(nullable = false)
     private int quant_produto;
     
+    @OneToMany(mappedBy = "estoque")
+    private List<Livro> livros;
 
     public int getQuant_produto() {
         return quant_produto;

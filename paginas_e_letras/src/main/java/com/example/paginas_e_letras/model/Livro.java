@@ -1,6 +1,15 @@
 package com.example.paginas_e_letras.model;
 
-import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "LIVRO")
@@ -21,6 +30,19 @@ public class Livro extends AbstractEntity<Long>{
     @ManyToOne
     @JoinColumn(name = "editora_id_fk")
     private Editora editora;
+
+    @ManyToOne
+    @JoinColumn(name = "autor_id_fk")
+    private Autor autor;
+
+    @ManyToOne
+    @JoinColumn(name = "estoque_id_fk")
+    private Estoque estoque;
+
+    @ManyToMany
+    @JoinTable(name = "venda", joinColumns = @JoinColumn(name = "livro_id_fk"), inverseJoinColumns = @JoinColumn(name = "cliente_id_fk"))
+    private List<Cliente> cliente = new ArrayList<>();
+
 
     
     public String getTitulo() {

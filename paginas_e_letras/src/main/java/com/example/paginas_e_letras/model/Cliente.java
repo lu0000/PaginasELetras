@@ -1,5 +1,8 @@
 package com.example.paginas_e_letras.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +22,10 @@ public class Cliente extends AbstractEntity<Long>{
     @Column(nullable = true)
     private String email;
     
+    @ManyToMany(mappedBy = "cliente")
+    private List<Livro> livros = new ArrayList<>(); 
+
+
     public String getNome() {
         return nome;
     }

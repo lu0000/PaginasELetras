@@ -1,5 +1,7 @@
 package com.example.paginas_e_letras.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +16,13 @@ public class Financeiro extends AbstractEntity<Long>{
 
     @Column(nullable = false)
     private double descricao;
+
+    @OneToMany(mappedBy = "financeiro")
+    private List<Venda> vendas;
+
+    @OneToMany(mappedBy = "financeiro")
+    private List<Compra> compras;
+
 
     public double getValor_caixa() {
         return valor_caixa;
