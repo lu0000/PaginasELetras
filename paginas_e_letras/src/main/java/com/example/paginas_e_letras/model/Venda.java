@@ -53,6 +53,14 @@ public class Venda extends AbstractEntity<Long> {
     public void setValor_liquido(double valor_liquido) {
         this.valor_liquido = valor_liquido;
     }
+    public Financeiro getFinanceiro() {
+        return financeiro;
+    }
+    public void setFinanceiro(Financeiro financeiro) {
+        this.financeiro = financeiro;
+    }
+
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -66,6 +74,7 @@ public class Venda extends AbstractEntity<Long> {
         result = prime * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(valor_liquido);
         result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + ((financeiro == null) ? 0 : financeiro.hashCode());
         return result;
     }
     @Override
@@ -93,14 +102,19 @@ public class Venda extends AbstractEntity<Long> {
             return false;
         if (Double.doubleToLongBits(valor_liquido) != Double.doubleToLongBits(other.valor_liquido))
             return false;
+        if (financeiro == null) {
+            if (other.financeiro != null)
+                return false;
+        } else if (!financeiro.equals(other.financeiro))
+            return false;
         return true;
     }
     @Override
     public String toString() {
         return "Venda [descrição_produto=" + descrição_produto + ", forma_de_pagamento=" + forma_de_pagamento
-                + ", desconto=" + desconto + ", valor_bruto=" + valor_bruto + ", valor_liquido=" + valor_liquido + "]";
+                + ", desconto=" + desconto + ", valor_bruto=" + valor_bruto + ", valor_liquido=" + valor_liquido
+                + ", financeiro=" + financeiro + "]";
     }
-
     
     
 }

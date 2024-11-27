@@ -3,6 +3,7 @@ package com.example.paginas_e_letras.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,7 @@ import com.example.paginas_e_letras.repository.IEditoraRepository;
 @Service
 @Transactional(readOnly = false)
 public class EditoraService {
-    
+    @Autowired
     private IEditoraRepository repository;
 
     public void salvar(Editora editora){
@@ -25,6 +26,10 @@ public class EditoraService {
 
     public void excluir(Editora editora){
         repository.delete(editora);
+    }
+
+    public void excluirPorId(Long id){
+        repository.deleteById(id);
     }
 
     @Transactional(readOnly = true)

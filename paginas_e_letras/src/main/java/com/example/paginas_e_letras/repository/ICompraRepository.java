@@ -7,5 +7,5 @@ import com.example.paginas_e_letras.model.Compra;
 public interface ICompraRepository extends JpaRepository<Compra, Long>{
 
 
-    
+    public void deleteById(long id);
 }

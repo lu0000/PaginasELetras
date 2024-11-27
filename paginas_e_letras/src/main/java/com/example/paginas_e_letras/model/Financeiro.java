@@ -55,6 +55,22 @@ public class Financeiro extends AbstractEntity<Long>{
     public void setDescricao(double descricao) {
         this.descricao = descricao;
     }
+    
+    public List<Venda> getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
+    }
 
     @Override
     public int hashCode() {
@@ -69,6 +85,8 @@ public class Financeiro extends AbstractEntity<Long>{
         result = prime * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(descricao);
         result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + ((vendas == null) ? 0 : vendas.hashCode());
+        result = prime * result + ((compras == null) ? 0 : compras.hashCode());
         return result;
     }
 
@@ -89,14 +107,26 @@ public class Financeiro extends AbstractEntity<Long>{
             return false;
         if (Double.doubleToLongBits(descricao) != Double.doubleToLongBits(other.descricao))
             return false;
+        if (vendas == null) {
+            if (other.vendas != null)
+                return false;
+        } else if (!vendas.equals(other.vendas))
+            return false;
+        if (compras == null) {
+            if (other.compras != null)
+                return false;
+        } else if (!compras.equals(other.compras))
+            return false;
         return true;
     }
 
     @Override
     public String toString() {
         return "Financeiro [valor_caixa=" + valor_caixa + ", entrada=" + entrada + ", saida=" + saida + ", descricao="
-                + descricao + "]";
+                + descricao + ", vendas=" + vendas + ", compras=" + compras + "]";
     }
+
+    
     
     
     

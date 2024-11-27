@@ -3,6 +3,7 @@ package com.example.paginas_e_letras.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,7 @@ import com.example.paginas_e_letras.repository.IAutorRepository;
 @Service //Equivale a camada de serviço: Faz a lógica de negócio e as Transações
 @Transactional(readOnly = false)
 public class AutorService {
-    
+    @Autowired
     private IAutorRepository repository;
 
     public void salvar(Autor autor){
@@ -25,6 +26,10 @@ public class AutorService {
 
     public void excluir(Autor autor){
         repository.delete(autor);
+    }
+
+    public void excluirPorId(Long id){
+        repository.deleteById(id);
     }
 
     @Transactional(readOnly = true)

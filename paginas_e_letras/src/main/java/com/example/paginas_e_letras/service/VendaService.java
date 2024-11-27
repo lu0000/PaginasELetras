@@ -30,6 +30,10 @@ public class VendaService {
         repository.delete(venda);
     }
 
+    public void excluirPorId(Long id){
+        repository.deleteById(id);
+    }
+
     @Transactional(readOnly = true)
     public List<Venda> buscarTodos(){
         return repository.findAll();

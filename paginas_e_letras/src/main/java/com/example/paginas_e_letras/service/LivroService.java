@@ -28,6 +28,12 @@ public class LivroService {
 
     public void excluir(Livro livro){
         repository.delete(livro);
+        System.out.println("Livro excluido com sucesso!");
+    }
+
+    public void excluirPorId(Long id){
+        repository.deleteById(id);
+        System.out.println("Livro excluido com sucesso!");
     }
 
     @Transactional(readOnly = true)
@@ -37,6 +43,32 @@ public class LivroService {
 
     @Transactional(readOnly = true)
     public Optional<Livro> buscarPorId(Long id){
-        return repository.findById(id);
+        System.out.println("Procurando o livro com id: " + id);
+        return repository.findById(id); 
+    }
+
+    @Transactional(readOnly = true)
+    public Livro buscarPorTitulo(String titulo){
+        
+        Livro livro = repository.findByTitulo(titulo);
+
+        if (livro != null) {
+            System.out.println("Livro encontrado: " + livro.getTitulo() + " | Valor: " + livro.getValor());
+        } else {
+            System.out.println("Nenhum livro encontrado com o título: " + titulo);
+        }
+
+        return livro;
+        
+        /*System.out.println("Procurando o livro: " + titulo);
+        if (titulo != null) {
+        repository.findByTitulo(titulo);
+        if (livro != null) {
+            System.out.println("Livro encontrado: " + livro.getTitulo() + " | Valor: " + livro.getValor());
+        } else {
+            System.out.println("Nenhum livro encontrado com o título: " + titulo);
+        }
+        return repository.findByTitulo(titulo);
+        }*/
     }
 }

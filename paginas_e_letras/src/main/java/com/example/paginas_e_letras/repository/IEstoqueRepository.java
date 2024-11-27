@@ -6,5 +6,7 @@ import com.example.paginas_e_letras.model.Estoque;
 
 public interface IEstoqueRepository extends JpaRepository<Estoque, Long>{
 
-    public Estoque alterar_estoque(Long id, int quantidade);
+    //public Estoque alterar_estoque(Long id, int quantidade);
+
+    public void deleteById(long id);
 }

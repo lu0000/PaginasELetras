@@ -70,16 +70,44 @@ public class Livro extends AbstractEntity<Long>{
         this.valor = valor;
     }
     
+    public Editora getEditora() {
+        return editora;
+    }
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+    public Autor getAutor() {
+        return autor;
+    }
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+    public Estoque getEstoque() {
+        return estoque;
+    }
+    public void setEstoque(Estoque estoque) {
+        this.estoque = estoque;
+    }
+    public List<Cliente> getCliente() {
+        return cliente;
+    }
+    public void setCliente(List<Cliente> cliente) {
+        this.cliente = cliente;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
+        int result = super.hashCode();
         result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
         result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
         result = prime * result + ((genero == null) ? 0 : genero.hashCode());
         long temp;
         temp = Double.doubleToLongBits(valor);
         result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + ((editora == null) ? 0 : editora.hashCode());
+        result = prime * result + ((autor == null) ? 0 : autor.hashCode());
+        result = prime * result + ((estoque == null) ? 0 : estoque.hashCode());
+        result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
         return result;
     }
 
@@ -87,7 +115,7 @@ public class Livro extends AbstractEntity<Long>{
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (!super.equals(obj))
             return false;
         if (getClass() != obj.getClass())
             return false;
@@ -109,14 +137,34 @@ public class Livro extends AbstractEntity<Long>{
             return false;
         if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
             return false;
+        if (editora == null) {
+            if (other.editora != null)
+                return false;
+        } else if (!editora.equals(other.editora))
+            return false;
+        if (autor == null) {
+            if (other.autor != null)
+                return false;
+        } else if (!autor.equals(other.autor))
+            return false;
+        if (estoque == null) {
+            if (other.estoque != null)
+                return false;
+        } else if (!estoque.equals(other.estoque))
+            return false;
+        if (cliente == null) {
+            if (other.cliente != null)
+                return false;
+        } else if (!cliente.equals(other.cliente))
+            return false;
         return true;
     }
-
     @Override
     public String toString() {
-        return "Livro [titulo=" + titulo + ", isbn=" + isbn + ", genero=" + genero + ", valor=" + valor
-                + "]";
+        return "Livro [titulo=" + titulo + ", isbn=" + isbn + ", genero=" + genero + ", valor=" + valor + ", editora="
+                + editora + ", autor=" + autor + ", estoque=" + estoque + ", cliente=" + cliente + "]";
     }
+
 
     
 }
