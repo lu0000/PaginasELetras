@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.paginas_e_letras.model.Autor;
+import com.example.paginas_e_letras.model.Estoque;
 import com.example.paginas_e_letras.model.Financeiro;
 import com.example.paginas_e_letras.repository.IFinanceiroRepository;
 
@@ -38,7 +40,29 @@ public class FinanceiroService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Financeiro> buscarPorId(Long id){
-        return repository.findById(id);
+    public Financeiro buscarPorId(Long id){
+        return repository.findById(id).get();
     }
+
+    public void valor_caixa(Long id){
+        Financeiro financeiro = repository.findById(id).orElseThrow(() -> new RuntimeException("Código" + id + " não encontrado."));
+        
+        double valorAnterior = financeiro.getValor_caixa();
+        
+        financeiro.setValor_caixa(0);
+
+        repository.save(financeiro);
+
+        System.out.println("Valor anterior do caixa: " + valorAnterior);
+    }
+
+    public void caixa(Long id_finan){
+        Financeiro financeiro = repository.findById(id_finan).orElseThrow(() -> new RuntimeException("Código" + id_finan + " não encontrado."));
+        if(financeiro.getEntrada() != 0){
+            financeiro.setValor_caixa(financeiro.getValor_caixa() + financeiro.getEntrada());
+        }else if(financeiro.getSaida() != 0){
+            financeiro.setValor_caixa(financeiro.getValor_caixa() - financeiro.getSaida());
+        }
+    }
+
 }

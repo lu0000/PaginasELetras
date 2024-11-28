@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.paginas_e_letras.model.Autor;
 import com.example.paginas_e_letras.model.Venda;
 import com.example.paginas_e_letras.repository.IVendaRepository;
 
@@ -40,7 +41,16 @@ public class VendaService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Venda> buscarPorId(Long id){
-        return repository.findById(id);
+    public Venda buscarPorId(Long id){
+        return repository.findById(id).get();
     }
+
+    /*public void valor_liquido(double desconto, double valor_bruto){
+        
+        if(desconto > 0){
+            double valor_liquido;
+            valor_liquido = valor_bruto - desconto;
+            repository.save()
+        }
+    }*/
 }

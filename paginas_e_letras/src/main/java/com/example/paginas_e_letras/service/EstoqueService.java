@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.paginas_e_letras.model.Autor;
 import com.example.paginas_e_letras.model.Estoque;
+import com.example.paginas_e_letras.model.Livro;
 import com.example.paginas_e_letras.repository.IEstoqueRepository;
 
 @Service
@@ -38,9 +40,8 @@ public class EstoqueService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Estoque> buscarPorId(Long id){
-        return repository.findById(id);
-    }
+    public Estoque buscarPorId(Long id){
+        return repository.findById(id).get();
+    }    
 
-    
 }

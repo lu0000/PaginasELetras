@@ -17,14 +17,12 @@ public class Autor extends AbstractEntity<Long>{
     public String getNome_autor() {
         return nome_autor;
     }
-
     public void setNome_autor(String nome_autor) {
         this.nome_autor = nome_autor;
     }
     public List<Livro> getLivros() {
         return livros;
     }
-
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
     }

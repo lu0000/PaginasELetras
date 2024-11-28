@@ -1,6 +1,5 @@
 package com.example.paginas_e_letras.model;
 
-import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -15,14 +14,15 @@ public class Financeiro extends AbstractEntity<Long>{
     private double saida;
 
     @Column(nullable = false)
-    private double descricao;
+    private String descricao;
 
-    @OneToMany(mappedBy = "financeiro")
-    private List<Venda> vendas;
+    @OneToOne
+    @JoinColumn(name = "compra_id_fk")
+    private Compra compras;
 
-    @OneToMany(mappedBy = "financeiro")
-    private List<Compra> compras;
-
+    @OneToOne
+    @JoinColumn(name = "venda_id_fk")
+    private Venda vendas;
 
     public double getValor_caixa() {
         return valor_caixa;
@@ -48,28 +48,28 @@ public class Financeiro extends AbstractEntity<Long>{
         this.saida = saida;
     }
 
-    public double getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(double descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    public List<Venda> getVendas() {
-        return vendas;
-    }
 
-    public void setVendas(List<Venda> vendas) {
-        this.vendas = vendas;
-    }
-
-    public List<Compra> getCompras() {
+    public Compra getCompras() {
         return compras;
     }
 
-    public void setCompras(List<Compra> compras) {
+    public void setCompras(Compra compras) {
         this.compras = compras;
+    }
+
+    public Venda getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(Venda vendas) {
+        this.vendas = vendas;
     }
 
     @Override
@@ -83,10 +83,9 @@ public class Financeiro extends AbstractEntity<Long>{
         result = prime * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(saida);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(descricao);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((vendas == null) ? 0 : vendas.hashCode());
+        result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
         result = prime * result + ((compras == null) ? 0 : compras.hashCode());
+        result = prime * result + ((vendas == null) ? 0 : vendas.hashCode());
         return result;
     }
 
@@ -105,17 +104,20 @@ public class Financeiro extends AbstractEntity<Long>{
             return false;
         if (Double.doubleToLongBits(saida) != Double.doubleToLongBits(other.saida))
             return false;
-        if (Double.doubleToLongBits(descricao) != Double.doubleToLongBits(other.descricao))
-            return false;
-        if (vendas == null) {
-            if (other.vendas != null)
+        if (descricao == null) {
+            if (other.descricao != null)
                 return false;
-        } else if (!vendas.equals(other.vendas))
+        } else if (!descricao.equals(other.descricao))
             return false;
         if (compras == null) {
             if (other.compras != null)
                 return false;
         } else if (!compras.equals(other.compras))
+            return false;
+        if (vendas == null) {
+            if (other.vendas != null)
+                return false;
+        } else if (!vendas.equals(other.vendas))
             return false;
         return true;
     }

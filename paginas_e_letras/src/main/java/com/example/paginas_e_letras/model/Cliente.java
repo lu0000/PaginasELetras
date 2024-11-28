@@ -1,6 +1,5 @@
 package com.example.paginas_e_letras.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -17,16 +16,15 @@ public class Cliente extends AbstractEntity<Long>{
     
     @Column(nullable = false)
     private String Endereço;
-
     
     @Column(nullable = false)
     private String celular;
 
     @Column(nullable = true)
     private String email;
-    
-    @ManyToMany(mappedBy = "cliente")
-    private List<Livro> livros = new ArrayList<>(); 
+
+    @OneToMany (mappedBy = "clientes")
+    private List<Venda> vendas;
 
 
     public String getNome() {
@@ -53,18 +51,17 @@ public class Cliente extends AbstractEntity<Long>{
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public List<Livro> getLivros() {
-        return livros;
-    }
-    public void setLivros(List<Livro> livros) {
-        this.livros = livros;
-    }
     public String getEndereço() {
         return Endereço;
     }
     public void setEndereço(String endereço) {
         Endereço = endereço;
+    }
+    public List<Venda> getVendas() {
+        return vendas;
+    }
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
     }
     
     @Override
@@ -76,7 +73,7 @@ public class Cliente extends AbstractEntity<Long>{
         result = prime * result + ((Endereço == null) ? 0 : Endereço.hashCode());
         result = prime * result + ((celular == null) ? 0 : celular.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
-        result = prime * result + ((livros == null) ? 0 : livros.hashCode());
+        result = prime * result + ((vendas == null) ? 0 : vendas.hashCode());
         return result;
     }
     
@@ -114,18 +111,19 @@ public class Cliente extends AbstractEntity<Long>{
                 return false;
         } else if (!email.equals(other.email))
             return false;
-        if (livros == null) {
-            if (other.livros != null)
+        if (vendas == null) {
+            if (other.vendas != null)
                 return false;
-        } else if (!livros.equals(other.livros))
+        } else if (!vendas.equals(other.vendas))
             return false;
         return true;
     }
     @Override
     public String toString() {
         return "Cliente [nome=" + nome + ", cpf=" + cpf + ", Endereço=" + Endereço + ", celular=" + celular + ", email="
-                + email + ", livros=" + livros + "]";
+                + email + ", vendas=" + vendas + "]";
     }
+    
     
 
     

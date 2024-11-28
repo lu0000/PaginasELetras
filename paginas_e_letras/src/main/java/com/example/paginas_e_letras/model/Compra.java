@@ -12,12 +12,6 @@ public class Compra extends AbstractEntity<Long>{
     @Column(nullable = false)
     private double valor_total;
 
-    @ManyToOne
-    @JoinColumn(name = "financeiro_id_fk")
-    private Financeiro financeiro;
-
-
-
     public String getDescrição_compra() {
         return descrição_compra;
     }
@@ -33,13 +27,6 @@ public class Compra extends AbstractEntity<Long>{
     public void setValor_total(double valor_total) {
         this.valor_total = valor_total;
     }
-    public Financeiro getFinanceiro() {
-        return financeiro;
-    }
-
-    public void setFinanceiro(Financeiro financeiro) {
-        this.financeiro = financeiro;
-    }
 
 
     @Override
@@ -50,7 +37,6 @@ public class Compra extends AbstractEntity<Long>{
         long temp;
         temp = Double.doubleToLongBits(valor_total);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((financeiro == null) ? 0 : financeiro.hashCode());
         return result;
     }
 
@@ -70,18 +56,12 @@ public class Compra extends AbstractEntity<Long>{
             return false;
         if (Double.doubleToLongBits(valor_total) != Double.doubleToLongBits(other.valor_total))
             return false;
-        if (financeiro == null) {
-            if (other.financeiro != null)
-                return false;
-        } else if (!financeiro.equals(other.financeiro))
-            return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Compra [descrição_compra=" + descrição_compra + ", valor_total=" + valor_total + ", financeiro="
-                + financeiro + "]";
+        return "Compra [descrição_compra=" + descrição_compra + ", valor_total=" + valor_total + "]";
     }
 
 

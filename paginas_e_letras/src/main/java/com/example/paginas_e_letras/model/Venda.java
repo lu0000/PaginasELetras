@@ -1,6 +1,8 @@
 package com.example.paginas_e_letras.model;
 
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,9 +21,12 @@ public class Venda extends AbstractEntity<Long> {
     private double valor_liquido;
 
     @ManyToOne
-    @JoinColumn(name = "financeiro_id_fk")
-    private Financeiro financeiro;
-    
+    @JoinColumn(name = "livro_id_fk")
+    private Livro livros;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id_fk")
+    private Cliente clientes;
     
     public String getDescrição_produto() {
         return descrição_produto;
@@ -53,14 +58,18 @@ public class Venda extends AbstractEntity<Long> {
     public void setValor_liquido(double valor_liquido) {
         this.valor_liquido = valor_liquido;
     }
-    public Financeiro getFinanceiro() {
-        return financeiro;
+    public Livro getLivros() {
+        return livros;
     }
-    public void setFinanceiro(Financeiro financeiro) {
-        this.financeiro = financeiro;
+    public void setLivros(Livro livros) {
+        this.livros = livros;
     }
-
-    
+    public Cliente getClientes() {
+        return clientes;
+    }
+    public void setClientes(Cliente clientes) {
+        this.clientes = clientes;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -74,7 +83,8 @@ public class Venda extends AbstractEntity<Long> {
         result = prime * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(valor_liquido);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((financeiro == null) ? 0 : financeiro.hashCode());
+        result = prime * result + ((livros == null) ? 0 : livros.hashCode());
+        result = prime * result + ((clientes == null) ? 0 : clientes.hashCode());
         return result;
     }
     @Override
@@ -102,10 +112,15 @@ public class Venda extends AbstractEntity<Long> {
             return false;
         if (Double.doubleToLongBits(valor_liquido) != Double.doubleToLongBits(other.valor_liquido))
             return false;
-        if (financeiro == null) {
-            if (other.financeiro != null)
+        if (livros == null) {
+            if (other.livros != null)
                 return false;
-        } else if (!financeiro.equals(other.financeiro))
+        } else if (!livros.equals(other.livros))
+            return false;
+        if (clientes == null) {
+            if (other.clientes != null)
+                return false;
+        } else if (!clientes.equals(other.clientes))
             return false;
         return true;
     }
@@ -113,8 +128,10 @@ public class Venda extends AbstractEntity<Long> {
     public String toString() {
         return "Venda [descrição_produto=" + descrição_produto + ", forma_de_pagamento=" + forma_de_pagamento
                 + ", desconto=" + desconto + ", valor_bruto=" + valor_bruto + ", valor_liquido=" + valor_liquido
-                + ", financeiro=" + financeiro + "]";
+                + ", livros=" + livros + ", clientes=" + clientes + "]";
     }
+    
+    
     
     
 }

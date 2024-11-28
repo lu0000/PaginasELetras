@@ -3,12 +3,14 @@ package com.example.paginas_e_letras.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,13 +37,12 @@ public class Livro extends AbstractEntity<Long>{
     @JoinColumn(name = "autor_id_fk")
     private Autor autor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "estoque_id_fk")
     private Estoque estoque;
 
-    @ManyToMany
-    @JoinTable(name = "venda", joinColumns = @JoinColumn(name = "livro_id_fk"), inverseJoinColumns = @JoinColumn(name = "cliente_id_fk"))
-    private List<Cliente> cliente = new ArrayList<>();
+    @OneToMany(mappedBy = "livros")
+    private List<Venda> vendas;
 
 
     
@@ -88,11 +89,12 @@ public class Livro extends AbstractEntity<Long>{
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
     }
-    public List<Cliente> getCliente() {
-        return cliente;
+
+    public List<Venda> getVendas() {
+        return vendas;
     }
-    public void setCliente(List<Cliente> cliente) {
-        this.cliente = cliente;
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
     }
     @Override
     public int hashCode() {
@@ -107,7 +109,7 @@ public class Livro extends AbstractEntity<Long>{
         result = prime * result + ((editora == null) ? 0 : editora.hashCode());
         result = prime * result + ((autor == null) ? 0 : autor.hashCode());
         result = prime * result + ((estoque == null) ? 0 : estoque.hashCode());
-        result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
+        result = prime * result + ((vendas == null) ? 0 : vendas.hashCode());
         return result;
     }
 
@@ -152,18 +154,19 @@ public class Livro extends AbstractEntity<Long>{
                 return false;
         } else if (!estoque.equals(other.estoque))
             return false;
-        if (cliente == null) {
-            if (other.cliente != null)
+        if (vendas == null) {
+            if (other.vendas != null)
                 return false;
-        } else if (!cliente.equals(other.cliente))
+        } else if (!vendas.equals(other.vendas))
             return false;
         return true;
     }
     @Override
     public String toString() {
         return "Livro [titulo=" + titulo + ", isbn=" + isbn + ", genero=" + genero + ", valor=" + valor + ", editora="
-                + editora + ", autor=" + autor + ", estoque=" + estoque + ", cliente=" + cliente + "]";
+                + editora + ", autor=" + autor + ", estoque=" + estoque + ", vendas=" + vendas + "]";
     }
+
 
 
     

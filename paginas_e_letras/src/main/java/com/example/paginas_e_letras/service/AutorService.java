@@ -39,8 +39,8 @@ public class AutorService {
 
     //A classe Optional é uma maneira de lidar com valores possivelmente nulos de maneira mais segura e explícita.
     @Transactional(readOnly = true)
-    public Optional<Autor> buscarPorId(Long id){
-        return repository.findById(id);
+    public Autor buscarPorId(Long id){
+        return repository.findById(id).get();
     }
     
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.paginas_e_letras.model.Autor;
 import com.example.paginas_e_letras.model.Cliente;
 import com.example.paginas_e_letras.repository.IClienteRepository;
 
@@ -38,7 +39,7 @@ public class ClienteService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Cliente> buscarPorId(Long id){
-        return repository.findById(id);
+    public Cliente buscarPorId(Long id){
+        return repository.findById(id).get();
     }
 }
