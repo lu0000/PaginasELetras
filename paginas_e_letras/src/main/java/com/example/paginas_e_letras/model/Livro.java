@@ -37,7 +37,7 @@ public class Livro extends AbstractEntity<Long>{
     @JoinColumn(name = "autor_id_fk")
     private Autor autor;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "estoque_id_fk")
     private Estoque estoque;
 

@@ -8,4 +8,5 @@ public interface IClienteRepository extends JpaRepository<Cliente, Long> {
 
 
     public void deleteById(long id);
+    public Cliente findByNome(String nome);
 }

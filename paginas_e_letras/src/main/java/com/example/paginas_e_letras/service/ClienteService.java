@@ -42,4 +42,15 @@ public class ClienteService {
     public Cliente buscarPorId(Long id){
         return repository.findById(id).get();
     }
+
+    @Transactional(readOnly = true)
+    public Cliente buscarPorNome(String nome){
+        Cliente cliente = repository.findByNome(nome);
+        if (cliente != null) {
+            System.out.println("Cliente encontrado: " + cliente.getNome() + " | CPF: " + cliente.getCpf() + "| Telefone: " + cliente.getCelular());
+        } else {
+            System.out.println("Nenhum cliente encontrado com o nome: " + cliente);
+        }
+        return cliente;
+    }
 }

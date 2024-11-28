@@ -45,12 +45,4 @@ public class VendaService {
         return repository.findById(id).get();
     }
 
-    /*public void valor_liquido(double desconto, double valor_bruto){
-        
-        if(desconto > 0){
-            double valor_liquido;
-            valor_liquido = valor_bruto - desconto;
-            repository.save()
-        }
-    }*/
 }

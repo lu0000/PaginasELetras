@@ -11,7 +11,7 @@ public class Estoque extends AbstractEntity<Long>{
     @Column(nullable = false)
     private int quant_produto;
     
-    @OneToMany(mappedBy = "estoque", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "estoque")
     private List<Livro> livros;
 
     public int getQuant_produto() {

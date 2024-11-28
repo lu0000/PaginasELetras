@@ -60,13 +60,26 @@ public class LivroService {
     public Livro buscarPorId(Long id){
         System.out.println("Buscando Livro com o código " + id);
         return repository.findById(id).orElse(null);
+        
+        /*Livro livro = repository.findById(id).orElse(null);
+        System.out.println("Detalhes do Livro:");
+        System.out.println("ID: " + livro.getId());
+        System.out.println("Título: " + livro.getTitulo());
+        System.out.println("Gênero: " + livro.getGenero());
+        System.out.println("ISBN: " + livro.getIsbn());
+        System.out.println("Valor: " + livro.getValor());
+        System.out.println("Autor: " + (livro.getAutor()));
+        System.out.println("Editora: " + (livro.getEditora()));
+        System.out.println("Estoque: " + (livro.getEstoque()));
+        return repository.findById(id).orElse(null);*/
+            
     }
     
     @Transactional(readOnly = true)
     public Livro buscarPorTitulo(String titulo){
         Livro livro = repository.findByTitulo(titulo);
         if (livro != null) {
-            System.out.println("Livro encontrado: " + livro.getTitulo() + " | Valor: " + livro.getValor());
+            System.out.println("Livro encontrado: " + livro.getTitulo() + " | Valor: " + livro.getValor() + "| Quantidade: " + livro.getEstoque().getQuant_produto() );
         } else {
             System.out.println("Nenhum livro encontrado com o título: " + titulo);
         }
