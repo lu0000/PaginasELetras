@@ -17,44 +17,44 @@ public class LivroService {
     private ILivroRepository repository;
 
     public void salvar(Livro livro){
-        try { //Tratamento de Exceção
-            System.out.println("Tentando salvar o livro: " + livro.getTitulo());
-            Livro l = repository.save(livro);
-            System.out.println("Livro salvo com sucesso: " + l.getId());
-        } catch (Exception e) {
-            System.err.println("Erro ao salvar o livro: " + e.getMessage());
+            try { //Tratamento de Exceção
+                System.out.println("Tentando salvar o livro: " + livro.getTitulo());
+                Livro l = repository.save(livro);
+                System.out.println("Livro salvo com sucesso: " + l.getId());
+            } catch (Exception e) {
+                System.err.println("Erro ao salvar o livro: " + e.getMessage());
+            }
         }
-    }
 
     public void editar(Livro livro){
-        repository.save(livro);
-    }
+            repository.save(livro);
+        }
 
     public void excluir(Livro livro){
-        try{
-            repository.delete(livro);
-            System.out.println("Livro" + livro.getTitulo() + "excluido com sucesso!");
-        } catch(Exception e){
-            System.err.println("Não foi possível excluir o livro!");
+            try{
+                repository.delete(livro);
+                System.out.println("Livro" + livro.getTitulo() + "excluido com sucesso!");
+            } catch(Exception e){
+                System.err.println("Não foi possível excluir o livro!");
+            }
         }
-    }
 
     public void excluirPorId(Long id){
-        try{
-            System.out.println("Excluindo Livro identificado com o código: " + id);
-            repository.deleteById(id);
-            System.out.println("Livro excluido com sucesso!");
-        }catch(Exception e){
-            System.err.println("Não foi possível excluir o livro!");
+            try{
+                System.out.println("Excluindo Livro identificado com o código: " + id);
+                repository.deleteById(id);
+                System.out.println("Livro excluido com sucesso!");
+            }catch(Exception e){
+                System.err.println("Não foi possível excluir o livro!");
+            }
+            
         }
-        
-    }
 
     @Transactional(readOnly = true)
     public List<Livro> buscarTodos(){
-        //System.out.println("Buscando todos os Livros cadastrados.");
-        return repository.findAll();
-    }
+            //System.out.println("Buscando todos os Livros cadastrados.");
+            return repository.findAll();
+        }
 
     @Transactional(readOnly = true)
     public Livro buscarPorId(Long id){

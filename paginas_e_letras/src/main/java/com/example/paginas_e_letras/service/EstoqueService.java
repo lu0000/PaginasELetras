@@ -1,15 +1,12 @@
 package com.example.paginas_e_letras.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.paginas_e_letras.model.Autor;
 import com.example.paginas_e_letras.model.Estoque;
-import com.example.paginas_e_letras.model.Livro;
 import com.example.paginas_e_letras.repository.IEstoqueRepository;
 
 @Service

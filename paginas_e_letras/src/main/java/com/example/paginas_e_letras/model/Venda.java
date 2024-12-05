@@ -1,7 +1,6 @@
 package com.example.paginas_e_letras.model;
 
 
-import java.util.List;
 
 import jakarta.persistence.*;
 
