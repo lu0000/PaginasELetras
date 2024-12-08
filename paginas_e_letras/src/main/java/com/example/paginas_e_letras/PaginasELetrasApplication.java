@@ -103,8 +103,9 @@ public class PaginasELetrasApplication {
 			financeiroSer.salvar(f2);*/
 
 			//TESTANDO OS OUTROS MÉTODOS
-			//livroSer.retira_estoque(1L, 1);
-			//livroSer.adiciona_estoque(3L, 10);
+			
+			//livroSer.retira_estoque(1L, 2);
+			//livroSer.adiciona_estoque(2L, 10);
 
 			//livroSer.buscarPorTitulo("Os crimes abc");
 			//livroSer.buscarPorTitulo("Jogos Vorazes");

@@ -41,13 +41,13 @@ public class FinanceiroService {
         return repository.findById(id).get();
     }
 
-    public void caixa(Long id_finan){
+    /*public void caixa(Long id_finan){
         Financeiro financeiro = repository.findById(id_finan).orElseThrow(() -> new RuntimeException("Código" + id_finan + " não encontrado."));
         if(financeiro.getEntrada() != 0){
             financeiro.setValor_caixa(financeiro.getValor_caixa() + financeiro.getEntrada());
         }else if(financeiro.getSaida() != 0){
             financeiro.setValor_caixa(financeiro.getValor_caixa() - financeiro.getSaida());
         }
-    }
+    }*/
 
 }
